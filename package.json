@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "dev": "nodemon --inspect server.js"
+    "start": "node src/server.js",
+    "watch" : "node-sass --watch src/scss/app.scss --output public/css/app.css",
+    "dev": "nodemon --inspect src/server.js"
   },
   "author": "",
   "license": "ISC",
@@ -16,6 +18,7 @@
     "mongoose": "^7.0.3"
   },
   "devDependencies": {
+    "node-sass": "^8.0.0",
     "nodemon": "^2.0.22"
   }
 }

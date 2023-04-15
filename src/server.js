@@ -1,20 +1,33 @@
-const mongoose = require('mongoose');
-const express = require('express');
+import mongoose from 'mongoose';
+import express from 'express';
+import path from 'path'
+import { fileURLToPath } from 'url';
+import { engine } from 'express-handlebars';
 const app = express();
-const Product = require('./models/ProductsModel')
-const User = require('./models/UserModel');
-const port = 3000;
+import Product from '../models/ProductsModel.js';
+import User from '../models/UserModel.js';
+const port = 3001;
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }));
-// app.engine('handlebars', engine());
-// app.set('view engine', 'handlebars');
-// app.get('/', (req, res) => {
-//     res.send('Xin chao leloi')
-//     console.log('xin chafo');
-// });
-// app.get('/tintuc', (req, res) => {
-//     res.send('Xin chao tintuc')
-// });
+app.use(express.static(path.join(__dirname, '../public')));
+
+
+app.engine('.hbs', engine({ extname: '.hbs' }));
+app.set('view engine', '.hbs');
+app.set('views', 'src/views');
+app.get('/', (req, res) => {
+    res.render('home');
+    console.log('home page');
+});
+app.get('/news', (req, res) => {
+    res.render('news');
+    console.log('news page');
+});
+
+
 
 //product
 app.get('/Api/Product', async (req, res) => {
@@ -51,7 +64,7 @@ app.put('/Api/Product/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const productOld = await Product.findByIdAndUpdate(id, req.body);
-        if (!product) {
+        if (!productOld) {
             res.status(404).json({ message: 'cannot find id product' })
         }
         const productNew = await Product.findById(id);
