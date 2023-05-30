@@ -1,5 +1,7 @@
-import mongoose from "mongoose";
 
+import mongoose from "mongoose";
+import slug from 'mongoose-slug-generator';
+mongoose.plugin(slug);
 const ProductSchema = mongoose.Schema(
     {
         name: {
@@ -18,8 +20,12 @@ const ProductSchema = mongoose.Schema(
         image: {
             type: String,
             required: false
+        },
+        slug: {
+            type: String,
+            slug: 'name',
+            unique: true
         }
-        // ,
         // user_id: {
         //     type: mongoose.Types.ObjectId,
         //     required: true
@@ -30,5 +36,9 @@ const ProductSchema = mongoose.Schema(
     }
 
 )
+ProductSchema.pre("create", function (next) {
+    this.slug = this.name.split(" ").join("-");
+    next();
+});
 const Product = mongoose.model('Product', ProductSchema);
 export default Product

@@ -1,0 +1,61 @@
+<div class="add-product mt-4">
+  <form method="put">
+    <div class="form-group">
+      <label for="exampleInputEmail1">Name</label>
+      <input
+        type="text"
+        required
+        name="name"
+        value="{{product.name}}"
+        class="form-control"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter Name"
+      />
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Quantity</label>
+      <input
+        type="number"
+        class="form-control"
+        required
+        value="{{product.quantity}}"
+        name="quantity"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter quantity"
+      />
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Price</label>
+      <input
+        type="number"
+        class="form-control"
+        required
+        value="{{product.price}}"
+        name="price"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter price"
+      />
+
+    </div>
+    <div class="form-group">
+      <label for="exampleInputEmail1">Image</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{product.image}}"
+        name="image"
+        id="exampleInputEmail1"
+        aria-describedby="emailHelp"
+        placeholder="Enter image"
+      />
+
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

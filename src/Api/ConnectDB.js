@@ -1,6 +1,6 @@
-function ConnectDB(mongoose, app, port) {
+export async function ConnectDB(mongoose, app, port) {
     return (
-        mongoose.connect('mongodb+srv://testApi:loi12tren9deptrai@atlascluster.ptmjntq.mongodb.net/Product?retryWrites=true&w=majority')
+        await mongoose.connect('mongodb+srv://testApi:loi12tren9deptrai@atlascluster.ptmjntq.mongodb.net/Product?retryWrites=true&w=majority')
             .then(() => {
                 app.listen(port, () => {
                     console.log(`Example app listening on port http://localhost:${port}`)
@@ -12,5 +12,3 @@ function ConnectDB(mongoose, app, port) {
             })
     );
 }
-
-export default ConnectDB;
